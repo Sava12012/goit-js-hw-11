@@ -12,6 +12,7 @@ body {
   line-height: 1.5;
   background: rgba(128, 203, 196, 0.6);
 }
+
 .search-form {
   margin-bottom: 20px;
   padding: 20px;
@@ -51,9 +52,11 @@ body {
   transition: all 300ms ease-in-out;
   cursor: pointer;
 }
+
 .search-form__btn:hover {
   background-color: rgba(128, 203, 196, 1);
 }
+
 .search-form__btn:focus {
   outline: 1px solid rgba(128, 203, 196, 1);
   background-color: rgba(128, 203, 196, 1);
