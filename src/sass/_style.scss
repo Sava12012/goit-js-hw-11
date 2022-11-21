@@ -1,0 +1,269 @@
+body {
+  background-image: linear-gradient(
+    to right,
+    #eea2a2 0%,
+    #bbc1bf 19%,
+    #57c6e1 42%,
+    #b49fda 79%,
+    #7ac5d8 100%
+  );
+}
+
+.search-form {
+  margin-bottom: 20px;
+  padding: 20px;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 2px 1px 3px 0px rgba(0, 0, 0, 0.3);
+}
+
+.search-form__input {
+  padding: 10px 20px;
+  width: 400px;
+
+  font-size: 22px;
+  color: #777777;
+
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  border: none;
+
+  transition: all 350ms ease-in-out;
+  &:focus-within {
+    outline: 3px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0 6px rgba(62, 171, 255, 0.8);
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.search-form__btn,
+.load-more {
+  position: relative;
+
+  padding: 10px 20px;
+  font-size: 22px;
+  color: #fff;
+
+  background-color: rgba(62, 171, 255, 0.6);
+  border-radius: 5px;
+  border: none;
+
+  transition: all 300ms ease-in-out;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(62, 171, 255, 8);
+  }
+
+  &:focus {
+    background-color: rgba(62, 171, 255, 8);
+    outline: 3px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0 6px rgba(62, 171, 255, 0.8);
+  }
+}
+
+.gallery {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.photo-card {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+
+  overflow: hidden;
+  transition: box-shadow 350ms ease-in-out;
+
+  &:hover {
+    box-shadow: 2px 1px 3px 0px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.photo-card a:focus .photo-card__img {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+.photo-card__img {
+  transition: transform 350ms ease-in-out, filter 350ms ease-in-out;
+  filter: grayscale(50%);
+  object-fit: cover;
+}
+
+.photo-card:hover .photo-card__img {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+
+  font-size: 12px;
+  text-align: center;
+  color: #464646;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.load-more {
+  position: relative;
+
+  display: block;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 15px 10px;
+
+  width: 130px;
+
+  text-align: center;
+  font-size: 18px;
+}
+
+.load-more:disabled {
+  cursor: no-drop;
+}
+
+.is-hidden {
+  position: absolute;
+
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+
+  border: 0;
+
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.load-more__text {
+  transition: all 200ms ease-in-out;
+}
+
+.load-more--loading .load-more__text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.load-more--loading::after {
+  content: '';
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  margin: auto;
+  width: 25px;
+  height: 25px;
+
+  border: 4px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+  0% {
+    transform: rotate(0turn);
+  }
+
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.sl-overlay {
+  background-color: #000;
+}
+
+.sl-wrapper .sl-counter {
+  color: #fff;
+}
+
+.sl-spinner {
+  border: 5px solid #fff;
+}
+
+.sl-wrapper .sl-close,
+.sl-wrapper .sl-navigation button {
+  color: #fff;
+}
+
+.sl-image {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.to-top {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 70px;
+
+  text-decoration: none;
+  color: #fff;
+  background-color: rgba(62, 171, 255, 8);
+  border-radius: 50%;
+  opacity: 0.6;
+  box-shadow: 2px 1px 3px 0px rgba(0, 0, 0, 0.3);
+
+  cursor: pointer;
+  animation: drag 2000ms ease-in-out infinite;
+
+  transition: all 350ms ease-in-out;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+    animation-play-state: paused;
+  }
+}
+
+@keyframes drag {
+  0% {
+    transform: translateY(30%);
+  }
+  50% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(30%);
+  }
+}
