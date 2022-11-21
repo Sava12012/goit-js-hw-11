@@ -1,5 +1,4 @@
 import ImagesApiService from './js/images-service';
-// import LoadMoreBtn from './js/load-more';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -13,19 +12,13 @@ const refs = {
 
 const imagesApiService = new ImagesApiService();
 const gallery = new SimpleLightbox('.gallery a');
-// const loadMoreBtn = new LoadMoreBtn({
-//   selector: '.load-more',
-//   hidden: true,
-// });
 const optionsForObserver = {
   rootMargin: '250px',
 };
 const observer = new IntersectionObserver(onEntry, optionsForObserver);
 
-// observer.observe(refs.wrapper);
 refs.searchForm.addEventListener('submit', onSearch);
 refs.toTopBtn.addEventListener('click', onTopScroll);
-// loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
 window.addEventListener('scroll', onScrollToTopBtn);
 
 function onSearch(e) {
@@ -35,8 +28,6 @@ function onSearch(e) {
 
   imagesApiService.resetLoadedHits();
   imagesApiService.resetPage();
-  // loadMoreBtn.show();
-  // loadMoreBtn.disable();
   clearGelleryContainer();
 
   if (!imagesApiService.query) {
@@ -45,22 +36,16 @@ function onSearch(e) {
 
   imagesApiService.fetchImages().then(({ hits, totalHits }) => {
     if (!hits.length) {
-      // setTimeout(() => {
-      //   loadMoreBtn.hide();
-      // }, 1_500);
-
       return erorrQuery();
     }
 
     observer.observe(refs.wrapper);
-    // loadMoreBtn.enable();
     imagesApiService.incrementLoadedHits(hits);
     createGalleryMarkup(hits);
     accessQuery(totalHits);
     gallery.refresh();
 
     if (hits.length === totalHits) {
-      // loadMoreBtn.hide();
       observer.unobserve(refs.wrapper);
       endOfSearch();
     }
@@ -91,23 +76,6 @@ function onEntry(entries) {
     }
   });
 }
-
-// function onLoadMore() {
-//   loadMoreBtn.disable();
-
-//   imagesApiService.fetchImages().then(({ hits, totalHits }) => {
-//     imagesApiService.incrementLoadedHits(hits);
-//     loadMoreBtn.enable();
-
-//     if (totalHits <= imagesApiService.loadedHits) {
-//       loadMoreBtn.hide();
-//       endOfSearch();
-//     }
-
-//     createGalleryMarkup(hits);
-//     gallery.refresh();
-//   });
-// }
 
 function accessQuery(totalHits) {
   Notify.success(`Hooray! We found ${totalHits} images.`);
